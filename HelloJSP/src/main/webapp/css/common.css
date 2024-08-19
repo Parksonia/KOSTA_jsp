@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+	/*makeaccount의 style 가지오고옴*/
+	.header {
+		text-align : center;
+	}
+	
+	.wrap {
+		margin : 0 auto;
+		border : 1px solid;
+		width : 260px;
+		padding : 10px;
+	}
+	
+	.row {
+		height : 30px;
+	}
+	
+	.title {
+		float : left;
+		width : 70px;
+		text-align : center;
+		font-weight : bold;
+	}
+	
+	.input {
+		float : left;
+	}
+	
+	input[type='submit'] {
+		font-weight : bold;
+		width : 120px;
+		background-color : lightgray;
+		display : block;  /*인풋태그는 인라인이라서 margin이 안먹기 때문에 block처리필요*/
+		margin : 0 auto;
+	}
