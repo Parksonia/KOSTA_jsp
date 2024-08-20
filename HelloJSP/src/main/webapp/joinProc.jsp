@@ -1,14 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% request.setCharacterEncoding("utf-8"); %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="./css/common.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="header.jsp" %>
-	<h3 class="header"><%=request.getAttribute("err") %><h3>
+
+<h3>${param.id}</h3>
+<h3>${param.name}</h3>
+<h3>${param.password}</h3>
+<h3>${param.email}</h3>
+<h3>${param.address}</h3>
+
+
 </body>
 </html>

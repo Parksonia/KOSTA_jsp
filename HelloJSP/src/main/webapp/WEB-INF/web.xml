@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0"  xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+	
+	
+	<servlet>
+		<servlet-name>configTest</servlet-name>
+		<jsp-file>/configTest.jsp</jsp-file>
+		<init-param>
+			<param-name>fileDir</param-name>
+			<param-value>./img</param-value>
+		</init-param>
+<!-- 		<init-param>
+			<param-name>fileDir2</param-name>
+			<param-value>C:\Users\KOSTA\Desktop</param-value>
+		</init-param>  parameter 여러개 추가 가능-->
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>configTest</servlet-name>
+		<url-pattern>/configTest</url-pattern>
+	</servlet-mapping>
+</web-app>

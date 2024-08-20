@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="./css/common.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="header.jsp" %>
-	<h3 class="header"><%=request.getAttribute("err") %><h3>
+<h3><%= session.getAttribute("id") %>님 환영합니다.</h3>
 </body>
 </html>

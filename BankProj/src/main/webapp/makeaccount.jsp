@@ -40,27 +40,27 @@
 		<div class="wrap">
 			<div class="row">  
 				<div class="title">계좌번호</div>
-				<div class="input"><input type="text" name="id"/></div>
+				<div class="input"><input type="text" name="id" required="required"/></div>
 			</div>
 			<div class="row">  
 				<div class="title">이름</div>
-				<div class="input"><input type="text" name="name"/></div>
+				<div class="input"><input type="text" name="name" required="required"/></div>
 			</div>
 			<div class="row">  
 				<div class="title">입금액</div>
-				<div class="input"><input type="text" name="balance"/></div>
+				<div class="input"><input type="text" name="balance" required="required"/></div>
 			</div>
 			<div class="row">  
 				<div class="title">종류</div>
 				<div class="input">
-					<input type="radio" name="type" checked value="normal">일반
-					<input type="radio" name="type" value="special">특수
+					<input type="radio" name="type" checked value="normal"required="required">일반
+					<input type="radio" name="type" value="special"required="required">특수
 				</div>
 			</div>
 			<div class="row">  
 				<div class="title">등급</div>
 				<div class="input">
-					<select disabled id="grade" name="grade">
+					<select disabled id="grade" name="grade" required="required">
 						<option>선택</option>
 						<option>VIP</option>
 						<option>Gold</option>

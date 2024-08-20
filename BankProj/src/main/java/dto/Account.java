@@ -53,13 +53,14 @@ public class Account {
 				+ "]";
 	}
 	
-	public void deposit(Integer money) {
+	public void deposit(Integer money) throws Exception {
+		if(money<=0) throw new Exception("입금액 오류");
 		balance += money;
 	}
 	
-	public void withdraw(Integer money) {
-		if(balance>=money) {
+	public void withdraw(Integer money) throws Exception {
+		if(balance<money) throw new Exception("입금액 오류");
 			balance -= money;
-		}
+		
 	}
 }

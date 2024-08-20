@@ -3,8 +3,8 @@
 <%@ page import="dto.Account" %>
 <%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <% List<Account> accs = (ArrayList<Account>)request.getAttribute("accs"); %>     
- --%><!DOCTYPE html>
+<% List<Account> accs = (ArrayList<Account>)request.getAttribute("accs"); %>     
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -49,19 +49,28 @@
 			<div class="column title">등급</div>
 		</div>
 		
-			<c:forEach items="${accs}" var="acc" varStatus="status">
+		<%
+		   for(int i=0; i<accs.size(); i++){
+		   %>
 		   <div calss="row">
-		   <div class="column">${status.count}</div>
-		   <div class="column">${acc.id}</div>
-		   <div class="column">${acc.name}</div>
-		   <div class="column">${acc.balance}</div>
-		   <div class="column">${acc.type}</div>
-		   <div class="column">
-		   <c:if test="${acc.type eq 'special' }">
-		    ${acc.grade}
-		  	</c:if>
-		  	</div>
-		  </c:forEach>
+		   <div class="column"><%= i+1%></div>
+		   <div class="column"><%=accs.get(i).getId()%></div>
+		   <div class="column"><%=accs.get(i).getName()%></div>
+		   <div class="column"><%=accs.get(i).getBalance()%></div>
+		   <div class="column"><%=accs.get(i).getType()%></div>
+		   <%if(accs.get(i).getType().equals("normal")) {
+		   %>
+		   <div class="column"></div>
+		   <%}else {
+		   %>
+		    <div class="column"><%=accs.get(i).getGrade()%></div>
+		  
+		  <%
+		   }
+		   %>
+			</div>
+		    <%}
+		  %>
 	</div>
 </body>
 </html>

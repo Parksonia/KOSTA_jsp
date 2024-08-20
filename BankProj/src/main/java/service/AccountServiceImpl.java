@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import dao.BankDAO;
 import dto.Account;
 
@@ -37,5 +39,23 @@ public class AccountServiceImpl implements AccountService {
 		Account sacc = BankDAO.selectAccount(id);
 		if(sacc==null) throw new Exception("계좌번호 오류");
 		return sacc;
+	}
+	@Override
+	public List<Account> allacountinfo() throws Exception {
+		List<Account> accs= BankDAO.selectAllAccount();
+		if(accs == null) throw new Exception("조회 내역이 없습니다.");
+		return accs;
+	}
+	@Override
+	public void transfer(String sid, String rid, Integer money) throws Exception {
+		Account sacc = BankDAO.selectAccount(sid);
+		if(sacc==null) throw new Exception("보내는 계좌번호 오류");
+		Account racc = BankDAO.selectAccount(rid);
+		if(racc==null) throw new Exception("받는 계좌번호 오류");
+		sacc.withdraw(money);
+		racc.deposit(money);
+		BankDAO.updateBalance(racc);
+		BankDAO.updateBalance(sacc);
+		
 	}
 }

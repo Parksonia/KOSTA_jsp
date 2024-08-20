@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import dto.Account;
 
 public interface AccountService {
@@ -7,4 +9,6 @@ public interface AccountService {
 	Account deposit(String id, Integer money) throws Exception;
 	Account withdraw(String id,Integer money) throws Exception;
 	Account accountinfo(String id) throws Exception;
+	List<Account> allacountinfo() throws Exception;
+	void transfer(String sid,String rid,Integer money) throws Exception;
 }
