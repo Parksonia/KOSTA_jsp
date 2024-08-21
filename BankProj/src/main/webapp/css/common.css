@@ -3,10 +3,10 @@
 	.wrap {
 		margin : 0 auto;
 		border : 1px solid;
-		width : 260px;
+		width :300px;
 		padding: 10px;
 	}
-	.row { height : 30px; }
+	.row { height : 30px; display:flex; flex-direction: row; }
 	.title {
 		float:left;
 		width:70px;

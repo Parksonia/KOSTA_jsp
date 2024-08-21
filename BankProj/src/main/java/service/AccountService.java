@@ -11,4 +11,5 @@ public interface AccountService {
 	Account accountinfo(String id) throws Exception;
 	List<Account> allacountinfo() throws Exception;
 	void transfer(String sid,String rid,Integer money) throws Exception;
+	boolean doubleId(String id) throws Exception;
 }

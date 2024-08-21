@@ -31,6 +31,35 @@
 			}
 		}
 	}
+	//중복 체크
+	$(function(){
+		$('#doubleId').click(function(e){
+			e.preventDefault();
+			$.ajax({
+				url:'accountDoubleId',
+				type:'post',
+				axync:true,
+				dataType:'text',
+				data:{id:$('#id').val()},
+				success:function(result){
+					if(result =="true") {
+						alert("이미 사용중인 계좌입니다.");
+					}else{
+						alert("사용 가능 계좌입니다.");
+					}
+					
+				},
+				error:function(err){
+					
+				},
+				
+			})
+			
+		})	
+			
+	})
+
+
 </script>
 </head>
 <body>
@@ -40,7 +69,8 @@
 		<div class="wrap">
 			<div class="row">  
 				<div class="title">계좌번호</div>
-				<div class="input"><input type="text" name="id" required="required"/></div>
+				<div class="input"><input type="text" name="id"  id="id"required="required"/></div>
+				<div class="input">	&nbsp;<button id="doubleId">중복</button></div>
 			</div>
 			<div class="row">  
 				<div class="title">이름</div>

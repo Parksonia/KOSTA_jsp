@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% String message = (String)request.getAttribute("message"); %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,10 @@
 </head>
 <body>
 	<%@ include file="header.jsp" %>
-	<form action="loginProc.jsp" method="post">
+	<% if(message !=null){  %>
+	<h1><%= message %></h1>
+	<%} %>
+	<form action="login" method="post">
 		<div><h3 class="header">로그인</h3></div>
 		<div class="wrap">
 			<div class="row">  
