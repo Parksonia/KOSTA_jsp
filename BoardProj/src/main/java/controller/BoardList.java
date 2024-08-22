@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,18 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import dto.Board;
 import service.BoardService;
 import service.BoardServiceImpl;
+import util.PageInfo;
 
 /**
- * Servlet implementation class BoardDetail
+ * Servlet implementation class BoardList
  */
-@WebServlet("/boardDetail")
-public class BoardDetail extends HttpServlet {
+@WebServlet("/boardList")
+public class BoardList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardDetail() {
+    public BoardList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,26 +33,31 @@ public class BoardDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//url boardDetail?num=1  로 파라미터 넘김
-
-		Integer num = Integer.parseInt(request.getParameter("num"));
+		
+		request.setCharacterEncoding("utf-8");
+		String paramPage = request.getParameter("page");
+		Integer page = 1;
+		if(paramPage !=null) {
+			page = Integer.parseInt(paramPage);
+		}
+		
 		try {
 			BoardService service = new BoardServiceImpl();
-			Board board = service.boardDetail(num);
-			request.setAttribute("board", board);
-			String  id = (String)request.getSession().getAttribute("id");
-			if(id!=null) {
-				request.setAttribute("heart",service.checkHear(id, num));
-			}
+			PageInfo pageInfo = new PageInfo();
+			pageInfo.setCurPage(page);
+			List<Board> boardlist = service.boardList(pageInfo);
+			request.setAttribute("pageInfo", pageInfo);
+			// for(Board b:boardlist) { System.out.println(b.getCreate_date()); }
+			 
+			 
+			request.setAttribute("list",boardlist);
+			request.getRequestDispatcher("boardlist.jsp").forward(request, response);
 			
-			request.getRequestDispatcher("boarddetail.jsp").forward(request, response);
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			request.setAttribute("err",e.getMessage());
+		} catch (Exception e) {
+			request.setAttribute("err","게시글목록오류");
 			request.getRequestDispatcher("err.jsp").forward(request, response);
 		}
+	
+	
 	}
-
-
 }

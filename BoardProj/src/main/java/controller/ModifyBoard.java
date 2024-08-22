@@ -13,44 +13,53 @@ import service.BoardService;
 import service.BoardServiceImpl;
 
 /**
- * Servlet implementation class BoardDetail
+ * Servlet implementation class UpdateBoard
  */
-@WebServlet("/boardDetail")
-public class BoardDetail extends HttpServlet {
+@WebServlet("/modifyboard")
+public class ModifyBoard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BoardDetail() {
+    public ModifyBoard() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//url boardDetail?num=1  로 파라미터 넘김
-
-		Integer num = Integer.parseInt(request.getParameter("num"));
+		request.setCharacterEncoding("utf-8");
+		Integer num =Integer.parseInt(request.getParameter("num"));
+		
 		try {
 			BoardService service = new BoardServiceImpl();
 			Board board = service.boardDetail(num);
 			request.setAttribute("board", board);
-			String  id = (String)request.getSession().getAttribute("id");
-			if(id!=null) {
-				request.setAttribute("heart",service.checkHear(id, num));
-			}
+			request.getRequestDispatcher("modifyform.jsp").forward(request, response);
 			
-			request.getRequestDispatcher("boarddetail.jsp").forward(request, response);
-			
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err",e.getMessage());
 			request.getRequestDispatcher("err.jsp").forward(request, response);
 		}
+		
+		request.getRequestDispatcher("modifyform.jsp").forward(request, response);
+		
 	}
 
+	//수정 처리
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		BoardService service = new BoardServiceImpl();
+	
+		try {
+			Integer num= service.boardModify(request);
+			Board board = service.boardDetail(num); // 수정된거 가져오기
+			request.setAttribute("board", board);
+			request.getRequestDispatcher("boarddetail.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err",e.getMessage());
+			request.getRequestDispatcher("err.jsp").forward(request, response);
+		}
+	
+	}
 
 }
