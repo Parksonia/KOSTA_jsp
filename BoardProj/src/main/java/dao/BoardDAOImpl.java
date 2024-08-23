@@ -15,7 +15,7 @@ public class BoardDAOImpl implements BoardDAO {
 	public void insertBoard(Board board) throws Exception {
 		Connection conn = JDBCUtil.getConnection();
 		PreparedStatement pstmt = null;
-		String sql = "insert into board(subject,content,writer,filename)values(?,?,?,?)";
+		String sql = "insert into board(subject,content,writer,filename,dfilename)values(?,?,?,?,?)";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -23,6 +23,7 @@ public class BoardDAOImpl implements BoardDAO {
 			pstmt.setString(2, board.getContent());
 			pstmt.setString(3, board.getWriter());
 			pstmt.setString(4, board.getFilename());
+			pstmt.setString(5, board.getDfilename());
 			pstmt.executeQuery();
 			conn.commit();
 		
@@ -60,6 +61,7 @@ public class BoardDAOImpl implements BoardDAO {
 				board.setFilename(rset.getString("filename"));
 				board.setCreate_date(rset.getDate("create_date"));
 				board.setView_cnt(rset.getInt("view_cnt"));
+				board.setDfilename(rset.getString("dfilename"));
 			}
 			
 		} catch (Exception e) {
@@ -139,6 +141,7 @@ public class BoardDAOImpl implements BoardDAO {
 					board.setFilename(rset.getString("filename"));
 					board.setCreate_date(rset.getDate("create_date"));
 					board.setView_cnt(rset.getInt("view_cnt"));
+					board.setDfilename(rset.getString("dfilename"));
 					list.add(board);
 				}
 			}

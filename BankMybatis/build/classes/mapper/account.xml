@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- dtd설정 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<!--쿼리문 작성
+ 작성법
+ 
+ 	#{Account의 속성명}
+	<![CDATA[ 쿼리문 ]]> : 쿼리문에 들어가는 기호(* ,= 등)들을 text로 인식되게 하기 위함
+
+  -->
+
+<mapper namespace="mapper.account">
+	<insert id="insertAccount" parameterType="dto.Account"> 
+		<![CDATA[
+		insert account (id,name,balance,type,grade) values(#{id},#{name},#{balance},#{type},#{grade})
+	
+		]]>
+	</insert>
+
+	<!-- select의 경우는 데이터를 가져와야하니까 resultType 설정이 필요함 여기서는 Account객체로 저장되게됨(mybatis가 setter함수를 알아서찾아감 단, 컬럼명과 동일할 경우만!)  -->
+	<select id="selectAccount" parameterType="String" resultType="dto.Account">
+			<![CDATA[
+			select * from account where id=#{id}
+			]]>
+	
+	</select>
+
+	<update id="updateBalance" parameterType="dto.Account">
+		<![CDATA[
+			update account set balance=#{balance} where id=#{id}	
+		]]>
+	</update>
+
+	<select id="selectAllAccount" resultType="dto.Account">
+			<![CDATA[
+			 select * from account
+		]]>
+	</select>
+
+
+
+</mapper>

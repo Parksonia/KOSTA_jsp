@@ -4,6 +4,7 @@ import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import dto.Board;
 import util.PageInfo;
@@ -24,4 +25,12 @@ public interface BoardService {
 
 	// 상세보기에 좋아요 표시하기 위함
 	Integer checkHear(String memberId,Integer boardNum) throws Exception;
+
+	//좋아요 선택, 선택 취소 기능 위함
+	boolean toggleHeart(String id,Integer boardNum) throws Exception;
+	
+	//파일 다운로드 
+	void fileDown (HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	
 }

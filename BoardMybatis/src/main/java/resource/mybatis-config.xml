@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- dtd설정부터 해야함 -->
+<!DOCTYPE configuration 
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+
+<!-- mybatis 설정 -->
+<configuration>
+	<typeAliases>
+		<typeAlias type="dto.Board" alias ="board"/>
+		<typeAlias type="dto.Member" alias ="member"/>  <!--별칭을 주어 mapper/__.xml 에서 resultType에서 사용가능  -->
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name ="driver" value="org.mariadb.jdbc.Driver"></property>
+				<property name ="url" value="jdbc:mariadb://localhost:3306/testdb24"></property>
+				<property name ="username" value="root"></property>
+				<property name ="password" value="7564"></property>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 쿼리문을 작성할 mapeer 파일의 위치를 등록함-->
+	<mappers>
+		<mapper resource ="mapper/board.xml"/>
+		<mapper resource ="mapper/member.xml"/>
+	</mappers>
+
+</configuration>

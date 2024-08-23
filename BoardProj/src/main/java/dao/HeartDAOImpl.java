@@ -58,7 +58,7 @@ public class HeartDAOImpl implements HeartDAO {
 		}
 		
 		
-		return heartNum;
+		return heartNum; // 조회 성공하면 번호를 줌
 	}
 
 	@Override
