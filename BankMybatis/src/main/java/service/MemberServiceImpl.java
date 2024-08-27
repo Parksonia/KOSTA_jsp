@@ -14,7 +14,7 @@ public class MemberServiceImpl implements MemberService {
 		Member smember = new Member();
 		smember=memberdao.selectMember(member.getId());
 		
-		if(smember==null) {
+		if(smember == null) {
 			memberdao.insertMember(member);
 		}else {
 			throw new Exception("계정 중복");
@@ -23,12 +23,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void login(String id, String password) throws Exception {
+	public Member login(String id, String password) throws Exception {
 		MemberDAO memberdao = new MemberDAOImpl(); 
 		Member lmember = memberdao.selectMember(id); // 찾은 멤버를 담을 객체
 		
 		if(lmember == null) throw new Exception("아이디 오류");
 		if(!password.equals(lmember.getPassword())) throw new Exception("패스워드 오류"); 
+		return lmember;
 		/*
 		 * if(lmember.getId() !=id) { throw new Exception("아이디 오류"); }
 		 * if(lmember.getPassword()!=password) { throw new Exception("패스워드 오류"); }

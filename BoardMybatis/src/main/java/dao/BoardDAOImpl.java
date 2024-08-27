@@ -39,7 +39,8 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void updateViewCnt(Integer num) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.update("mapper.board.updateViewCnt",num);
+		sqlSession.commit();
 
 	}
 

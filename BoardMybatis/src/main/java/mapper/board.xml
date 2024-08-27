@@ -37,7 +37,9 @@
 		]]>
 	</select>
 
-
-
-
+	<update id="updateViewCnt" parameterType="Integer">
+		<![CDATA[
+			update board set view_cnt=view_cnt+1 where num = #{id}
+		]]>
+	</update>
 </mapper>

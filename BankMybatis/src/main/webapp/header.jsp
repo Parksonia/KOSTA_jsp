@@ -39,11 +39,13 @@ h1 {
       </div>
       <div style="float:right;">
       	<c:choose>
-         <c:when test="${id eq null}">
+      	<c:when test="${member eq null }">	
          	<a href="login">로그인</a> 
          </c:when>
          <c:otherwise>
-				<b>[ ${id} ]</b>&nbsp;&nbsp;<a href="logout">로그아웃</a>
+         		<img src="${member.profile_image}" width="30px"/>
+         		<b>[ ${member.nickname eq null ? member.name:member.nickname} ]</b>&nbsp;&nbsp;<a href="logout">로그아웃</a>
+			<%-- 	<b>[ ${id} ]</b>&nbsp;&nbsp;<a href="logout">로그아웃</a> --%>
 			</c:otherwise>
         </c:choose> 
          <a href="join">회원가입</a>

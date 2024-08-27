@@ -46,6 +46,7 @@ public class Join extends HttpServlet {
 		String address = request.getParameter("address");
 		
 		Member memer = new Member(id,name,password,email,address); // member객체 생성
+		
 		try {
 			MemberService mservice  = new MemberServiceImpl();
 			mservice.join(memer);
