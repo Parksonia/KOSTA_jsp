@@ -36,8 +36,8 @@ public class NaverLoginServiceImpl implements NaverLoginService {
 	}
 
 	String getNaverToken(String code, String state) throws Exception {
-		String client_id = "cN5KhLKCmZQ3KCGoyauD"; // naverdeveloper application에서 확인
-		String client_secret = "3toSUvtkQ2";
+		String client_id = ""; // naverdeveloper application에서 확인
+		String client_secret = "";
 		String redirectURI = URLEncoder.encode("http://localhost:8080/bank/naver", "utf-8");
 		StringBuilder apiURL = new StringBuilder("https://nid.naver.com/oauth2.0/token?");
 

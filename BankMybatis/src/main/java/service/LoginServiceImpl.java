@@ -57,7 +57,7 @@ public class LoginServiceImpl implements LoginService {
 		/*토큰을 받아오기 위해서  필수항목을 다 가져와야함 */
 		StringBuilder param = new StringBuilder();
 		param.append("grant_type=authorization_code"); //authorization_code로 고정
-		param.append("&client_id=d1e55a57c615ed931fe94c2d77ef5a3c");
+		param.append("&client_id=");
 		param.append("&redirect_uri=http://localhost:8080/bank/kakao");
 		param.append("&code="+code);
 		
